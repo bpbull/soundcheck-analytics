@@ -1,0 +1,76 @@
+# Secrets & credentials (CRITICAL - never commit these!)
+.env
+.secrets/
+**/credentials/**
+service-account-*.json
+*-key.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Mac system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+log/
+
+# Raw data (keep repos lightweight)
+data/raw/
+data/processed/
+*.parquet
+*.xlsx
+!data/raw/.gitkeep
+!**/sample_*.csv
+
+# dbt artifacts
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+profiles.yml
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+temp/
+
+# OS generated files
+*.DS_Store*
+.Spotlight-V100
+.Trashes
+
+# Database dumps
+*.sql
+*.db
+*.sqlite
+*.sqlite3
+!**/schema.sql
+!**/ddl.sql
