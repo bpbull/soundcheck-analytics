@@ -71,15 +71,15 @@ dashboards/       # BI dashboard links and screenshots
 
 **Current Status**: Data generation complete, BigQuery and dbt setup in progress
 
-1. **View Generated Data Structure**:
+1. **Generate Data**:
 ```bash
    cd generator/
-   python generate_fake_data.py --help
+   python generate_fake_data.py
 
-2. **Setup BigQuery (coming soon)**:
+2. **Setup BigQuery** (in progress):
    Load scripts and schema definitions in development
 
-3. **dbt Development (In progress)**:
+3. **dbt Development In progress** (in progress):
    ```bash
    cd dbt/
    # dbt deps && dbt run && dbt test
