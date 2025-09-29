@@ -81,10 +81,10 @@ dashboards/       # BI dashboard links and screenshots
    Load scripts and schema definitions in development
 
 3. **dbt Development In progress (in progress)**:
-   ```bash
+```bash
    cd dbt/
    # Coming soon: dbt deps && dbt run && dbt test
-   ```
+```
 
 4. **View Dashboard**: [Looker Studio Link](coming soon)
 
