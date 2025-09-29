@@ -68,19 +68,21 @@ dashboards/       # BI dashboard links and screenshots
 - Python for data generation
 
 ### Quick Start
-1. **Generate Data** (optional - sample data provided):
-   ```bash
+
+**Current Status**: Data generation complete, BigQuery and dbt setup in progress
+
+1. **View Generated Data Structure**:
+```bash
    cd generator/
-   python generate_fake_data.py
-   ```
+   python generate_fake_data.py --help
 
-2. **Load to BigQuery**:
-   Run BigQuery load scripts using your project ID (script coming soon)
+2. **Setup BigQuery (coming soon)**:
+   Load scripts and schema definitions in development
 
-3. **Run dbt Transformations**:
+3. **dbt Development (In progress)**:
    ```bash
    cd dbt/
-   dbt deps && dbt run && dbt test
+   # dbt deps && dbt run && dbt test
    ```
 
 4. **View Dashboard**: [Looker Studio Link](coming soon)
@@ -98,7 +100,7 @@ This project answers business questions like:
 ## Data Sample
 
 Since raw CSV files are large (500MB+), sample data is available:
-- **Development**: Small datasets in `dbt/seeds/` for testing
+- **Development**: Sample data files coming soon to `dbt/seeds/`
 - **Full Dataset**: Available via [Google Cloud Storage](coming soon)
 
 ## Project Status
