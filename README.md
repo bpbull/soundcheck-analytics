@@ -75,14 +75,15 @@ dashboards/       # BI dashboard links and screenshots
 ```bash
    cd generator/
    python generate_fake_data.py
+```
 
-2. **Setup BigQuery** (in progress):
+2. **Setup BigQuery (in progress)**:
    Load scripts and schema definitions in development
 
-3. **dbt Development In progress** (in progress):
+3. **dbt Development In progress (in progress)**:
    ```bash
    cd dbt/
-   # dbt deps && dbt run && dbt test
+   # Coming soon: dbt deps && dbt run && dbt test
    ```
 
 4. **View Dashboard**: [Looker Studio Link](coming soon)
