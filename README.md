@@ -80,7 +80,7 @@ dashboards/       # BI dashboard links and screenshots
 2. **Setup BigQuery (in progress)**:
    Load scripts and schema definitions in development
 
-3. **dbt Development In progress (in progress)**:
+3. **dbt Development (in progress)**:
 ```bash
    cd dbt/
    # Coming soon: dbt deps && dbt run && dbt test
