@@ -67,24 +67,23 @@ dashboards/       # BI dashboard links and screenshots
 - dbt Core installed locally
 - Python for data generation
 
-## Quick Start
+### Quick Start
 
-**Current Status**: Data generation complete | BigQuery and dbt setup in progress 
+**Current Status**: Data generation complete, BigQuery and dbt setup in progress
 
-### 1. Generate Data
+1. **View Generated Data Structure**:
 ```bash
-cd generator/
-python generate_fake_data.py
-```
+   cd generator/
+   python generate_fake_data.py --help
 
-### 2. Setup BigQuery (coming soon)
-Load scripts and schema definitions in development
+2. **Setup BigQuery (coming soon)**:
+   Load scripts and schema definitions in development
 
-### 3. dbt Development (in progress)
-```bash
-cd dbt/
-# dbt deps && dbt run && dbt test (coming soon)
-```
+3. **dbt Development (In progress)**:
+   ```bash
+   cd dbt/
+   # dbt deps && dbt run && dbt test
+   ```
 
 4. **View Dashboard**: [Looker Studio Link](coming soon)
 
@@ -101,7 +100,7 @@ This project answers business questions like:
 ## Data Sample
 
 Since raw CSV files are large (500MB+), sample data is available:
-- **Development**: Small datasets in `dbt/seeds/` for testing
+- **Development**: Sample data files coming soon to `dbt/seeds/`
 - **Full Dataset**: Available via [Google Cloud Storage](coming soon)
 
 ## Project Status
