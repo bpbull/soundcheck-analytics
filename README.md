@@ -130,7 +130,7 @@ Since raw CSV files are large (500MB+), sample data is available:
 
 - [x] Synthetic data generation with business logic
 - [x] BigQuery schema design and data loading
-- [ ] dbt staging and mart layer development  
+- [ ] dbt staging, intermiediate, and mart layer development  
 - [ ] Comprehensive data quality testing
 - [ ] Executive dashboard development
 - [ ] Performance optimization and documentation
