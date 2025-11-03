@@ -75,3 +75,4 @@ temp/
 *.sqlite3
 !**/schema.sql
 !**/ddl.sql
+!dbt/models/**/*.sql

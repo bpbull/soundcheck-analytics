@@ -88,6 +88,28 @@ dashboards/       # BI dashboard links and screenshots
 
 4. **View Dashboard**: [Looker Studio Link](coming soon)
 
+## Key Use Cases
+
+### 1. Artist Discovery: Finding Hidden Gems
+Soundcheck enables discovery of high-quality artists with low social media following.
+
+**The Problem:** Spotify and Instagram algorithms favor artists with existing popularity, 
+creating a "rich get richer" dynamic that buries talented emerging artists.
+
+**Our Solution:** By tracking event quality ratings independent of social metrics, 
+we identify "hidden gems" - artists with exceptional live performances but limited 
+online presence.
+
+**Business Value:**
+- Venue bookers discover underpriced talent
+- Fans find artists before they become mainstream
+- Artists gain exposure beyond social media algorithms
+
+**Data Foundation:**
+- Social media metrics (Spotify listeners, Instagram followers)
+- Event quality ratings (user reviews, ratings)
+- Ticket sales velocity
+
 ## Sample Insights
 
 This project answers business questions like:

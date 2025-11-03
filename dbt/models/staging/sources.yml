@@ -1,0 +1,41 @@
+version: 2
+
+sources:
+  - name: soundcheck_raw
+    description: Raw data from Soundcheck music platform
+    database: lmdb-472022
+    schema: soundcheck_raw
+    
+    tables:
+      - name: cities
+        description: Reference table of cities with music scene metrics
+        
+      - name: users
+        description: Platform users who rate events and follow artists
+        
+      - name: artists
+        description: Musical artists and bands
+        
+      - name: venues
+        description: Concert venues and their attributes
+        
+      - name: tours
+        description: Artist tour information
+        
+      - name: events
+        description: Individual concert events
+        
+      - name: ticket_sales
+        description: Ticket purchase transactions
+        
+      - name: event_ratings
+        description: User ratings and reviews of events
+        
+      - name: artist_ratings
+        description: User ratings of artists
+        
+      - name: venue_reviews
+        description: User reviews of venues
+        
+      - name: user_artist_follows
+        description: User-artist follow relationships
