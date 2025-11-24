@@ -1,0 +1,75 @@
+version: 2
+
+models:
+  - name: fct_events
+    description: "Fact table containing one row per event with aggregated metrics for ratings and sales"
+    columns:
+      - name: event_id
+        description: "Unique identifier for each event"
+        tests:
+          - unique
+          - not_null
+      
+      - name: event_date
+        description: "Date when the event took place"
+        tests:
+          - not_null
+      
+      - name: artist_id
+        description: "Foreign key to dim_artists"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_artists')
+              field: artist_id
+      
+      - name: venue_id
+        description: "Foreign key to dim_venues"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_venues')
+              field: venue_id
+      
+      - name: tickets_sold
+        description: "Total number of tickets sold for this event"
+        tests:
+          - not_null
+      
+      - name: total_revenue
+        description: "Total revenue generated from ticket sales"
+        tests:
+          - not_null
+
+  - name: dim_artists
+    description: "Dimension table containing artist attributes and aggregated performance metrics"
+    columns:
+      - name: artist_id
+        description: "Unique identifier for each artist"
+        tests:
+          - unique
+          - not_null
+      
+      - name: artist_name
+        description: "Name of the artist or band"
+        tests:
+          - not_null
+
+  - name: dim_venues
+    description: "Dimension table containing venue attributes and aggregated performance metrics"
+    columns:
+      - name: venue_id
+        description: "Unique identifier for each venue"
+        tests:
+          - unique
+          - not_null
+      
+      - name: venue_name
+        description: "Name of the venue"
+        tests:
+          - not_null
+      
+      - name: capacity
+        description: "Maximum capacity of the venue"
+        tests:
+          - not_null

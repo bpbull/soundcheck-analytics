@@ -1,164 +1,152 @@
-Soundcheck — Analytics Engineering Portfolio
+# Soundcheck Analytics
 
-**Stack:** BigQuery • dbt Core • Looker Studio • Python  
-**Skills Demonstrated:** Data Modeling • ETL Pipelines • Data Quality Testing • Dashboard Development
+A modern analytics engineering portfolio project demonstrating end-to-end data pipeline development for a music industry analytics platform.
 
-> **Goal**: Showcase end-to-end analytics engineering skills through a realistic music industry dataset, from raw data generation to business intelligence dashboards.
+**Tech Stack:** Python • BigQuery • dbt Core • Looker Studio
+
+---
 
 ## Project Overview
 
-This project simulates a comprehensive analytics pipeline for a proof-of-concept live music platform, demonstrating:
+Soundcheck is a music analytics platform that tracks concert performance, venue operations, and fan engagement. This project demonstrates production-grade data engineering practices from raw data generation through business intelligence dashboards.
 
-- **Data Engineering**: Python-generated synthetic dataset with realistic business logic
-- **Cloud Data Warehousing**: BigQuery implementation with proper partitioning and optimization  
-- **Data Modeling**: dbt transformations following dimensional modeling principles
-- **Data Quality**: Comprehensive testing and data validation
-- **Business Intelligence**: Executive dashboards with actionable insights
+**Business Questions Answered:**
+- Which artists consistently sell out shows?
+- What's the optimal ticket pricing by venue and artist popularity?
+- How does seasonality affect concert attendance?
+- Which venues have the highest revenue per event?
 
-## Business Context
+---
 
-Soundcheck tracks:
-- **Artist Performance**: Tours, venue relationships, ticket sales
-- **Venue Operations**: Capacity utilization, revenue optimization
-- **Fan Engagement**: Purchase patterns, review sentiment, loyalty metrics
-- **Market Analysis**: Geographic trends, seasonal patterns, pricing strategies
-
-## Technical Architecture
-
+## Architecture
 ```
-Data Generation (Python) → BigQuery (Raw) → dbt (Transform) → Looker Studio (Visualize)
+Python Data Generator → BigQuery (Raw Storage) → dbt (Transform) → Looker Studio (Visualize)
 ```
 
-### Repository Structure
-```
-generator/        # Synthetic data generation with business logic
-data/raw/         # Local CSV staging (not committed)
-bq/               # BigQuery schemas, partitioning, and load scripts  
-dbt/              # Data transformations, tests, and documentation
-dashboards/       # BI dashboard links and screenshots
-```
+**Data Flow:**
+1. **Source**: Synthetic data (1.1GB, 11 tables) with realistic music industry patterns
+2. **Warehouse**: BigQuery with partitioned fact tables for query performance
+3. **Transform**: dbt models following dimensional modeling (staging → intermediate → marts)
+4. **Visualize**: Looker Studio dashboards for stakeholder insights
+
+---
+
+## Data Model
+
+### Staging Layer (11 models)
+Clean, normalized versions of raw source tables
+
+### Intermediate Layer (1 model)
+- `int_events_enriched` - Events joined with artist, venue, and tour context
+
+### Marts Layer (3 models)
+- `fct_events` - Event performance metrics (ratings, sales, attendance)
+- `dim_artists` - Artist profiles with aggregated performance stats
+- `dim_venues` - Venue profiles with utilization and revenue metrics
+
+![Data Lineage](images/lineage_graph.png)
+
+---
 
 ## Key Features
 
-### Data Generation (`generator/`)
-- **Realistic Relationships**: Artists have tours, venues have capacity constraints
-- **Seasonality**: Concert patterns reflect real-world touring seasons
-- **Business Logic**: Ticket pricing based on demand, venue size, artist popularity
+**Data Quality**
+- 16 automated dbt tests (uniqueness, nulls, referential integrity)
+- All tests passing ✅
 
-### Data Warehouse (`bq/`)
-- **Partitioned Tables**: Events partitioned by date for query performance
-- **Proper Schemas**: Separate datasets for raw, staging, and mart layers
-- **Cost Optimization**: Clustered tables and efficient data types
+**Performance Optimization**
+- Partitioned tables for large datasets (ticket_sales: 1GB, event_ratings: 97MB)
+- Materialization strategy: Views for staging, tables for marts
 
-### Data Transformations (`dbt/`)
-- **Dimensional Modeling**: Star schema with fact and dimension tables
-- **Data Quality Tests**: Referential integrity, uniqueness, and freshness checks
-- **Documentation**: Auto-generated data lineage and field descriptions
+**Documentation**
+- Auto-generated dbt docs with data lineage visualization
+- Column-level descriptions and business logic
 
-### Analytics (`dashboards/`)
-- **Executive KPIs**: Revenue trends, capacity utilization, customer metrics
-- **Operational Insights**: Venue performance, artist rankings, geographic analysis
-- **Drill-Down Capability**: From high-level metrics to transaction details
+---
+
+## Technical Highlights
+
+**Dimensional Modeling**
+- Star schema design with fact and dimension tables
+- Proper foreign key relationships enforced via dbt tests
+
+**Data Transformations**
+- Complex joins across 6 source tables
+- Business logic: capacity utilization, price tiers, sold-out flags
+- Aggregations: Event-level and artist/venue-level metrics
+
+**Synthetic Data Generation**
+- Python script creates realistic patterns (seasonality, venue capacity constraints)
+
+---
+
+## Repository Structure
+```
+soundcheck-analytics/
+├── generator/           # Python data generation scripts
+├── dbt/
+│   ├── models/
+│   │   ├── staging/    # 11 cleaned source tables
+│   │   ├── intermediate/  # Enriched event data
+│   │   └── marts/      # Analytics-ready tables
+│   └── tests/          # Data quality validations
+├── images/             # Project screenshots
+└── README.md
+```
+
+---
 
 ## Getting Started
 
 ### Prerequisites
-- Google Cloud Platform account with BigQuery enabled
-- dbt Core installed locally
-- Python for data generation
+- Google Cloud Platform account
+- Python 3.9+
+- dbt Core with BigQuery adapter
 
-### Quick Start
-
-**Current Status**: Data generation complete, data loaded to BigQuery, building dbt models
-
-1. **Generate Data**:
+### Run the Pipeline
 ```bash
-   cd generator/
-   python generate_fake_data.py
+# 1. Generate synthetic data
+cd generator/
+python generate_data.py
+
+# 2. Load to BigQuery
+# (Files uploaded via BigQuery console)
+
+# 3. Run dbt transformations
+cd dbt/
+dbt run
+
+# 4. Run tests
+dbt test
+
+# 5. Generate documentation
+dbt docs generate
+dbt docs serve
 ```
-
-2. **Setup BigQuery (complete)**:
-   Data loaded to bq
-
-3. **dbt Development (in progress)**:
-```bash
-   cd dbt/
-   # Coming soon: dbt deps && dbt run && dbt test
-```
-
-4. **View Dashboard**: [Looker Studio Link](coming soon)
-
-## Key Use Cases
-
-### 1. Artist Discovery: Finding Hidden Gems
-Soundcheck enables discovery of high-quality artists with low social media following.
-
-**The Problem:** Spotify and Instagram algorithms favor artists with existing popularity, 
-creating a "rich get richer" dynamic that buries talented emerging artists.
-
-**Our Solution:** By tracking event quality ratings independent of social metrics, 
-we identify "hidden gems" - artists with exceptional live performances but limited 
-online presence.
-
-**Business Value:**
-- Venue bookers discover underpriced talent
-- Fans find artists before they become mainstream
-- Artists gain exposure beyond social media algorithms
-
-**Data Foundation:**
-- Social media metrics (Spotify listeners, Instagram followers)
-- Event quality ratings (user reviews, ratings)
-- Ticket sales velocity
-
-## Sample Insights
-
-This project answers business questions like:
-- Which venues have the highest revenue per square foot?
-- What's the optimal pricing strategy by artist tier and market?
-- How does day-of-week affect ticket sales conversion?
-- Where are we consistently underpricing tickets based on demand elasticity and sell-out velocity?
-- Which artists are rising fastest in popularity based on follow rates and ticket sales momentum?
-- Which events generate the highest revenue per attendee, factoring in ticket tiers and upsells?
-
-## Data Sample
-
-Since raw CSV files are large (500MB+), sample data is available:
-- **Development**: Sample data files coming soon to `dbt/seeds/`
-- **Full Dataset**: Available via [Google Cloud Storage](coming soon)
-
-## Project Status
-
-- [x] Synthetic data generation with business logic
-- [x] BigQuery schema design and data loading
-- [ ] dbt staging, intermiediate, and mart layer development  
-- [ ] Comprehensive data quality testing
-- [ ] Executive dashboard development
-- [ ] Performance optimization and documentation
-
-
-**Technical Decisions Made**:
-- Chose BigQuery for its columnar storage and built-in ML capabilities
-- Used dbt for version-controlled, testable transformations
-- Implemented star schema for optimal query performance
-- Added data quality tests to ensure reliability
-
-**Challenges Solved**:
-- Handling many-to-many relationships (artists-venues through events)
-- Implementing realistic business constraints in synthetic data
-- Balancing data volume with query performance
-- Creating meaningful KPIs for diverse stakeholders
-
-**Next Steps**:
-- Implement incremental models for large fact tables
-- Add machine learning models for demand forecasting
-- Create real-time streaming pipeline with Pub/Sub
-- Expand to include social media sentiment analysis
-
-## Contact
-
-Brendan Bullivant - [bpbullivant3@gmail.com]  
-LinkedIn: [www.linkedin.com/in/brendan-bullivant]  
 
 ---
 
-*This project demonstrates modern analytics engineering practices and is available for discussion during technical interviews.*
+## Project Status
+
+**Completed:**
+- ✅ Synthetic data generation (11 tables, 1.1GB)
+- ✅ BigQuery data warehouse setup with partitioning
+- ✅ dbt transformation pipeline (15 models)
+- ✅ Data quality testing (16 tests, all passing)
+- ✅ Documentation and lineage visualization
+
+**In Progress:**
+- 🚧 Looker Studio dashboard development
+
+**Future Enhancements:**
+- User behavior analysis (user segments, purchase patterns)
+- Geographic insights (city-level performance)
+- Incremental model optimization for large tables
+
+---
+
+## Contact
+
+**Brendan Bullivant**  
+📧 bpbullivant3@gmail.com  
+🔗 [linkedin.com/in/brendan-bullivant](https://www.linkedin.com/in/brendan-bullivant)
