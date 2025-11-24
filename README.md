@@ -19,9 +19,7 @@ Soundcheck is a music analytics platform that tracks concert performance, venue 
 ---
 
 ## Architecture
-```
 Python Data Generator → BigQuery (Raw Storage) → dbt (Transform) → Looker Studio (Visualize)
-```
 
 **Data Flow:**
 1. **Source**: Synthetic data (1.1GB, 11 tables) with realistic music industry patterns
@@ -52,7 +50,7 @@ Clean, normalized versions of raw source tables
 
 **Data Quality**
 - 16 automated dbt tests (uniqueness, nulls, referential integrity)
-- All tests passing ✅
+- All tests passing
 
 **Performance Optimization**
 - Partitioned tables for large datasets (ticket_sales: 1GB, event_ratings: 97MB)
@@ -129,14 +127,14 @@ dbt docs serve
 ## Project Status
 
 **Completed:**
-- ✅ Synthetic data generation (11 tables, 1.1GB)
-- ✅ BigQuery data warehouse setup with partitioning
-- ✅ dbt transformation pipeline (15 models)
-- ✅ Data quality testing (16 tests, all passing)
-- ✅ Documentation and lineage visualization
+-  Synthetic data generation (11 tables, 1.1GB)
+-  BigQuery data warehouse setup with partitioning
+-  dbt transformation pipeline (15 models)
+-  Data quality testing (16 tests, all passing)
+-  Documentation and lineage visualization
 
 **In Progress:**
-- 🚧 Looker Studio dashboard development
+-  Looker Studio dashboard development
 
 **Future Enhancements:**
 - User behavior analysis (user segments, purchase patterns)
